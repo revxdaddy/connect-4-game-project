@@ -13,7 +13,25 @@ var columns = 7;
 
 window.onload = function() {
     setGame();
+    document.getElementById("restartBtn").addEventListener("click", restartGame);
+
 }
+
+function restartGame() {
+    // Clear the board visually
+    document.getElementById("board").innerHTML = "";
+
+    // Reset game state
+    gameOver = false;
+    currentPlayer = playerRed;
+
+    // Clear winner text
+    document.getElementById("winner").innerText = "";
+
+    // Rebuild the game
+
+}
+
 
 function setGame() {
     board = [];
@@ -79,10 +97,42 @@ function setPiece() {
                 }
             }
         }
-    }
+    
 
     //vertically
+    for (let c = 0; c < columns; c++) {
+        for (let r = 0; r < rows-3; r++) {
+            if (board[r][c] != ' ') {
+                if (board[r][c] == board[r+1][c] && board[r+1][c] == board[r+2][c] && board[r+2][c] == board[r+3][c]) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
+    //anti-diagonal
+    for (let r = 0; r < rows-3; r++){
+        for (let c = 0; c < columns - 3; c++) {
+            if (board[r][c] != ' ') {
+                if (board[r][c] == board[r+1][c+1] && board[r+1][c+1] == board[r+2][c+2] && board[r+2][c+2] == board[r+3][c+3]) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
 
+    //reg diagonal
+    for (let r = 3; r < rows; r++) {
+        for (let c = 0; c < columns -3; c++){
+            if (board[r][c] != ' ') {
+                if (board[r][c] == board[r-1][c+1] && board[r-1][c+1] == board[r-2][c+2] && board[r-2][c+2] == board[r-3][c+3]) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
     function setWinner(r, c) {
         let winner = document.getElementById("winner");
         if (board[r][c] == playerRed) {
@@ -93,3 +143,7 @@ function setPiece() {
 
         gameOver = true;
     }
+
+    
+
+}
