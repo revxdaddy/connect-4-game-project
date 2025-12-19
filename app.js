@@ -13,22 +13,6 @@ var columns = 7;
 
 window.onload = function() {
     setGame();
-    document.getElementById("restartBtn").addEventListener("click", restartGame);
-
-}
-
-function restartGame() {
-    // Clear the board visually
-    document.getElementById("board").innerHTML = "";
-
-    // Reset game state
-    gameOver = false;
-    currentPlayer = playerRed;
-
-    // Clear winner text
-    document.getElementById("winner").innerText = "";
-
-    // Rebuild the game
 
 }
 
