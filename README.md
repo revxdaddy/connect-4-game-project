@@ -8,3 +8,4 @@ Technologies used : HTML, CSS, JAVASCRIPT
 
 going to continue to get better.
 
+https://github.com/revxdaddy/connect-4-game-project.git
